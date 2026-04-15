@@ -18,8 +18,14 @@ public class Profile {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "gender")
+    @Column(name = "gender", columnDefinition = "text")
     private String gender;
+
+    @Column(name = "country_id", columnDefinition = "text")
+    private String countryId;
+
+    @Column(name = "age_group", columnDefinition = "text")
+    private String ageGroup;
 
     @Column(name = "gender_probability")
     private Double genderProbability;
@@ -29,12 +35,6 @@ public class Profile {
 
     @Column(name = "age")
     private Integer age;
-
-    @Column(name = "age_group")
-    private String ageGroup;
-
-    @Column(name = "country_id")
-    private String countryId;
 
     @Column(name = "country_probability")
     private Double countryProbability;
