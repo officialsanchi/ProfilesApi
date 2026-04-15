@@ -1,0 +1,50 @@
+# Profiles API
+
+A robust Spring Boot REST API that generates enriched user profiles by integrating with external APIs (**Genderize**, **Agify**, and **Nationalize**). The system handles real-time data enrichment, age classification, and multi-filter searching.
+
+**🔗 Live API URL:** [https://your-railway-app-name.up.railway.app/api/profiles](https://your-railway-app-name.up.railway.app/api/profiles)
+
+## 🚀 Features
+* **Automated Enrichment**: Fetches gender, age, and nationality data using external APIs.
+* **Data Classification**:
+    * **Age Groups**: Child (0-12), Teenager (13-19), Adult (20-59), Senior (60+).
+    * **Nationality**: Automatically identifies the country with the highest probability.
+* **Filtering**: Case-insensitive search by `gender`, `country_id`, and `age_group`.
+* **Modern Standards**: Uses **UUID v7** for primary keys and **ISO 8601 UTC** for timestamps.
+* **CORS Enabled**: Fully accessible for cross-origin grading scripts.
+
+## 📋 API Endpoints
+
+### 1. Create Profile
+`POST /api/profiles`
+* **Body**: `{ "name": "ella" }`
+* **Success (201)**: Returns full profile data.
+* **Existing (200)**: Returns existing record if the name has already been processed.
+
+### 2. Get All Profiles (With Filtering)
+`GET /api/profiles`
+* **Optional Params**: `gender`, `country_id`, `age_group`
+* **Example**: `/api/profiles?gender=male&country_id=NG`
+
+### 3. Get Single Profile
+`GET /api/profiles/{id}`
+
+### 4. Delete Profile
+`DELETE /api/profiles/{id}`
+* **Success**: `204 No Content`
+
+## ⚠️ Error Handling
+All errors follow a strict JSON structure: `{ "status": "error", "message": "<message>" }`
+
+| Status | Condition | Message Example |
+| :--- | :--- | :--- |
+| **400** | Missing Name | "Missing required field: name" |
+| **404** | Not Found | "Profile not found" |
+| **422** | Invalid Type | "Invalid type" |
+| **502** | API Failure | "Genderize returned an invalid response" |
+
+## 🛠 Tech Stack
+* **Language**: Java 21 / Spring Boot 3.x
+* **Database**: PostgreSQL (Neon.tech)
+* **Deployment**: Railway
+* **External APIs**: Genderize.io, Agify.io, Nationalize.io
