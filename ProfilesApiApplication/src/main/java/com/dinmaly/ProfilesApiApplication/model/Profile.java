@@ -18,16 +18,18 @@ public class Profile {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(columnDefinition = "text")
-    private String gender;
 
-    @Column(columnDefinition = "text")
-    private String countryId;
-
-    @Column(columnDefinition = "text")
-    private String ageGroup;
     @Column(name = "gender_probability")
     private Double genderProbability;
+
+    @Column(columnDefinition = "TEXT")
+    private String gender;
+
+    @Column(columnDefinition = "TEXT")
+    private String countryId;
+
+    @Column(name = "age_group", columnDefinition = "TEXT")
+    private String ageGroup;
 
     @Column(name = "sample_size")
     private Integer sampleSize;
