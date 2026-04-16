@@ -9,4 +9,4 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 # Ignore sensitive environment files
-/secrets.env
+secrets.env
