@@ -73,11 +73,11 @@
 			<artifactId>spring-dotenv</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+		<!-- Maven -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.7.2</version>
-			<scope>runtime</scope>
+			<version>42.3.9</version>
 		</dependency>
 	</dependencies>
 
