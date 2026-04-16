@@ -19,6 +19,14 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
+    @GetMapping("/")
+    public ResponseEntity<Map<String, Object>> healthCheck() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("status", "success");
+        response.put("message", "Profiles API is running");
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping
     public ResponseEntity<Map<String, Object>> createProfile(@RequestBody(required = false) Map<String, Object> body) {
 

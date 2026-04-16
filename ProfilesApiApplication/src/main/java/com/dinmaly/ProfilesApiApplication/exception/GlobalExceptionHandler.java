@@ -23,6 +23,11 @@ public class GlobalExceptionHandler {
 
         return error(HttpStatus.BAD_GATEWAY, ex.getMessage());
     }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
+        ex.printStackTrace(); // This will print the actual error to Railway logs
+        return error(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error: " + ex.getMessage());
+    }
 
     @ExceptionHandler({
             HttpMessageNotReadableException.class,
@@ -34,10 +39,6 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error");
-    }
 
     private ResponseEntity<Map<String, Object>> error(HttpStatus status, String message) {
         Map<String, Object> body = new LinkedHashMap<>();
